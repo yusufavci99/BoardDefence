@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject defenceUIParent;
-    public ItemHud defenceItemUIPrefab;
+    public ItemController defenceItemUIPrefab;
 
     public TextMeshProUGUI levelText;
 
@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
 
         foreach ( DefenceAndCount defenceAndCount in Game.levelData.defenceAndCounts) {
 
-            ItemHud defenceItemUI = Instantiate(defenceItemUIPrefab);
+            ItemController defenceItemUI = Instantiate(defenceItemUIPrefab);
             defenceItemUI.defenceAndCount = defenceAndCount;
             defenceItemUI.GetComponent<Image>().sprite = defenceAndCount.defenceData.itemSprite;
             defenceItemUI.transform.SetParent(defenceUIParent.transform);

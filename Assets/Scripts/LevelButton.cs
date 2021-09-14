@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,4 +17,7 @@ public class LevelButton : MonoBehaviour
         GetComponentInChildren<Text>().text = "Level " + level;
     }
 
+    public void LockLevel() {
+        GetComponent<Button>().interactable = false;
+    }
 }

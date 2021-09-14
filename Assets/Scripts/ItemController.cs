@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemHud : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ItemController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
     private DefenceData defenceData;
@@ -44,10 +44,10 @@ public class ItemHud : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
         Vector3 dropLocation = GridManager.gridManager.WorldToGrid(Camera.main.ScreenToWorldPoint(eventData.position));
 
-        if (itemRemaining > 0 && GridManager.gridManager.OnGrid(dropLocation)) {
+        if (itemRemaining > 0 && GridManager.gridManager.TileAvailable(dropLocation)) {
 
             Shoot defenceItem = Instantiate(defencePrefab);
-            defenceItem.transform.position = GridManager.gridManager.GridToWorld(dropLocation);
+            defenceItem.transform.position = GridManager.gridManager.Build(dropLocation);
             defenceItem.defenceData = defenceData;
 
             itemRemaining--;

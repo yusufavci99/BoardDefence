@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class EnemySpawner : MonoBehaviour
 
     private List<EnemyData> enemies;
 
-    // Start is called before the first frame update
+    private int remainingEnemies;
+
     void Start()
     {
         enemies = Game.levelData.RemoveCount();
+        remainingEnemies = enemies.Count;
         StartCoroutine("SpawnEnemy");
     }
 
@@ -24,10 +27,24 @@ public class EnemySpawner : MonoBehaviour
 
             GameObject enemy = Instantiate(enemyPrefab);
             enemy.GetComponent<EnemyMovement>().Init(enemies[0]);
+            enemy.GetComponent<ReactiveTarget>().Init(this);
             enemies.RemoveAt(0);
             
         }
         
         
+    }
+
+    public void CheckWin() {
+        remainingEnemies--;
+
+        if (remainingEnemies == 0) {
+            if (PlayerPrefs.GetInt("UnlockedLevel") < Game.levelData.level + 1) {
+                PlayerPrefs.SetInt("UnlockedLevel", Game.levelData.level + 1);
+                PlayerPrefs.Save();
+            }
+
+            SceneManager.LoadScene("Menu Scene");
+        }
     }
 }

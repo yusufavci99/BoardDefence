@@ -26,3 +26,4 @@ MonoBehaviour:
     count: 7
   - defenceData: {fileID: 11400000, guid: 58acea3de123cff44a7a0ce09a4d3b6d, type: 2}
     count: 5
+  level: 3

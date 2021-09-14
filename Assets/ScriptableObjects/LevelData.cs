@@ -7,6 +7,7 @@ public class LevelData : ScriptableObject
 {
     public EnemyAndCount[] enemyAndCounts;
     public DefenceAndCount[] defenceAndCounts;
+    public int level;
 
     public List<EnemyData> RemoveCount() {
         List<EnemyData> resultList = new List<EnemyData>();
