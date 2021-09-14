@@ -9,14 +9,12 @@ public class EnemyMovement : MonoBehaviour
     public EnemyData enemyData;
     Vector2 enemyLocation;
 
-    private float health;
-
-    void Start()
-    {
-        enemyLocation = new Vector2(Random.Range(0, gridManager.gridSize.x), gridManager.gridSize.y);
+    public void Init(EnemyData enemyData) {
         GetComponent<SpriteRenderer>().sprite = enemyData.sprite;
-
-        health = enemyData.maxHealth;
+        this.enemyData = enemyData;
+        gridManager = GridManager.gridManager;
+        enemyLocation = new Vector2(Random.Range(0, gridManager.gridSize.x), gridManager.gridSize.y + 2);
+        transform.position = gridManager.GridToWorld(enemyLocation);
     }
 
     void Update()
@@ -25,10 +23,12 @@ public class EnemyMovement : MonoBehaviour
         transform.position = gridManager.GridToWorld(enemyLocation);
     }
 
-    void Hit(int damage) {
-        health -= damage;
-        if (health <= 0) {
-            Destroy(this);
+    private void OnCollisionEnter2D(Collision2D collision) {
+        EnemyTarget hitTarget = collision.gameObject.GetComponent<EnemyTarget>();
+        if (hitTarget != null) {
+            
+            hitTarget.Remove();
         }
+
     }
 }

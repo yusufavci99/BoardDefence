@@ -12,4 +12,6 @@ public class DefenceData : ScriptableObject {
     public float range;
     public float hitInterval;
     public Direction direction;
+    public Sprite itemSprite;
+    public Sprite projectileSprite;
 }

@@ -19,13 +19,13 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemy() {
         while (enemies.Count > 0) {
-            
-            GameObject enemy = Instantiate(enemyPrefab);
-            enemy.GetComponent<EnemyMovement>().enemyData = enemies[0];
-            enemies.RemoveAt(0);
-            enemy.GetComponent<EnemyMovement>().gridManager = gridManager;
 
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(4.0f);
+
+            GameObject enemy = Instantiate(enemyPrefab);
+            enemy.GetComponent<EnemyMovement>().Init(enemies[0]);
+            enemies.RemoveAt(0);
+            
         }
         
         

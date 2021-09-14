@@ -93,7 +93,8 @@ MonoBehaviour:
     defenceData: {fileID: 0}
     count: 0
   countText: {fileID: 0}
-  defencePrefab: {fileID: 1751791101271704873, guid: 2fdb5aceca18968449d8a0cb4a36edd2, type: 3}
+  defencePrefab: {fileID: 1673489596306072465, guid: 2fdb5aceca18968449d8a0cb4a36edd2, type: 3}
+  thumbnail: {fileID: 288775908478613055, guid: b51f7bff742391245b73b4f8f800e408, type: 3}
 --- !u!1 &2585360555942036181
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 54, y: -51}
+  m_AnchoredPosition: {x: 81, y: -59}
   m_SizeDelta: {x: 67.0919, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1424009257940274599
@@ -186,8 +187,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

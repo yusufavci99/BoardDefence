@@ -16,3 +16,5 @@ MonoBehaviour:
   range: 1
   hitInterval: 5
   direction: 1
+  itemSprite: {fileID: 21300000, guid: 2b002bd5267bd524fbaffc66e40532bf, type: 3}
+  projectileSprite: {fileID: 21300000, guid: 2b0602fb98dc411439531fd5c73a6716, type: 3}

@@ -19,7 +19,7 @@ public class GridManager : MonoBehaviour
         if (gridManager == null) {
             gridManager = this;
         } else {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         
     }
@@ -45,5 +45,10 @@ public class GridManager : MonoBehaviour
                 tile.transform.position = GridToWorld(new Vector2(i, j));
             }
         }
+    }
+
+    public bool OnGrid(Vector3 checkPoint) {
+        return checkPoint.x > -0.1f && checkPoint.x < gridSize.x + 0.1f &&
+            checkPoint.y > -0.1f && checkPoint.y < gridSize.y + 0.1f;
     }
 }
