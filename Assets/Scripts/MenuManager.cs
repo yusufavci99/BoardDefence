@@ -35,4 +35,12 @@ public class MenuManager : MonoBehaviour
             }
         }
     }
+
+    public void ResetProgression() {
+        maxUnlockedLevel = 1;
+        PlayerPrefs.SetInt("UnlockedLevel", 1);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene("Menu Scene");
+    }
 }
