@@ -13,6 +13,17 @@ public class GridManager : MonoBehaviour
     public Vector2Int gridSize;
     public Transform tilesParent;
 
+    public static GridManager gridManager;
+
+    void Awake() {
+        if (gridManager == null) {
+            gridManager = this;
+        } else {
+            Destroy(this);
+        }
+        
+    }
+
     private void Start() {
         tileSize = tilePrefab.transform.localScale.x;
         CreateTiles();
@@ -22,8 +33,8 @@ public class GridManager : MonoBehaviour
         return (gridCoordinate * (tileSize + tileSpacing)) + offset;
     }
 
-    public Vector2 WorldToGrid(Vector2 worldCoordinate) {
-        throw new NotImplementedException();
+    public  Vector2 WorldToGrid(Vector2 worldCoordinate) {
+        return Vector2Int.RoundToInt((worldCoordinate - offset) / (tileSize + tileSpacing));
     }
 
     public void CreateTiles() {

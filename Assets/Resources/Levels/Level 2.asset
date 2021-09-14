@@ -19,4 +19,10 @@ MonoBehaviour:
     count: 2
   - enemyData: {fileID: 11400000, guid: 2051b6fa4246da44088d9663f481f3f6, type: 2}
     count: 3
-  defenceAndCounts: []
+  defenceAndCounts:
+  - defenceData: {fileID: 11400000, guid: ae5407dea62ec194e881a38751ff9fc5, type: 2}
+    count: 3
+  - defenceData: {fileID: 11400000, guid: f7092c884c79a9f4189275a446bfe54d, type: 2}
+    count: 4
+  - defenceData: {fileID: 11400000, guid: 58acea3de123cff44a7a0ce09a4d3b6d, type: 2}
+    count: 2

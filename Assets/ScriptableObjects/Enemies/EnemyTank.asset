@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   speed: 0.25
-  enemySprite: {fileID: 21300000, guid: dc6b53152b26ddc4cb0eec5b1e4785f5, type: 3}
+  sprite: {fileID: 21300000, guid: dc6b53152b26ddc4cb0eec5b1e4785f5, type: 3}

@@ -11,10 +11,4 @@ public class Game : MonoBehaviour
         levelData = Resources.Load<LevelData>("Levels/Level " + 1);
     }
 
-    void LoadLevel(int level) {
-    }
-
-    void ClearLevel() {
-
-    }
 }
