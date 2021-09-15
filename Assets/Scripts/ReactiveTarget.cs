@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class ReactiveTarget : MonoBehaviour
 {
-    private float health;
-    private EnemySpawner winCheck;
+    private float _health;
+    private EnemySpawner _winCheck;
 
     private void Start() {
-        health = GetComponent<EnemyMovement>().enemyData.maxHealth;
+        _health = GetComponent<EnemyMovement>().enemyData.maxHealth;
     }
 
     public void Init(EnemySpawner spawner) {
-        winCheck = spawner;
+        _winCheck = spawner;
     }
 
     public void Hit(float damage) {
-        health -= damage;
-        if (health <= 0) {
+        _health -= damage;
+        if (_health <= 0) {
             EnemyMovement enemyMovement = GetComponent<EnemyMovement>();
             if (enemyMovement != null) {
                 enemyMovement.Alive = false;
@@ -34,7 +34,7 @@ public class ReactiveTarget : MonoBehaviour
             }
 
             Destroy(gameObject, 0.5f);
-            winCheck.CheckWin();
+            _winCheck.CheckWin();
         }
     }
 }

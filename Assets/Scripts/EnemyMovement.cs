@@ -8,9 +8,10 @@ public class EnemyMovement : MonoBehaviour
 
     public GridManager gridManager;
     public EnemyData enemyData;
-    Vector2 enemyLocation;
-    private bool alive;
-    public bool Alive { get => alive; set => alive = value; }
+    public Vector2 enemyLocation;
+    public bool Alive { get => _alive; set => _alive = value; }
+
+    private bool _alive;
 
     public void Init(EnemyData enemyData) {
         GetComponent<SpriteRenderer>().sprite = enemyData.sprite;
@@ -21,12 +22,12 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private void Start() {
-        alive = true;
+        _alive = true;
     }
 
     void Update()
     {
-        if (alive) {
+        if (_alive) {
             enemyLocation += Vector2.down * enemyData.speed * Time.deltaTime;
             transform.position = gridManager.GridToWorld(enemyLocation);
         }

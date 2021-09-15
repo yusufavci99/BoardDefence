@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        enemies = Game.levelData.RemoveCount();
+        enemies = Game.levelData.GetEnemies(true);
         remainingEnemies = enemies.Count;
         StartCoroutine("SpawnEnemy");
     }

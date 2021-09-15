@@ -7,25 +7,21 @@ public class ProjectileBehaviour : MonoBehaviour
     public int velocity;
     private DefenceData defenceData;
     Vector3 originalPosition;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float _tileSquare;
 
     public void Init(DefenceData defenceData, Vector3 position) {
         this.defenceData = defenceData;
-        this.originalPosition = position;
+        this.originalPosition = position + new Vector3(0f, GridManager.gridManager.TileSize / 3, 0f);
         transform.position = position;
         this.GetComponent<SpriteRenderer>().sprite = defenceData.projectileSprite;
-    }
 
-    // Update is called once per frame
+        _tileSquare = GridManager.gridManager.TileSize * GridManager.gridManager.TileSize;
+    }
     void Update()
     {
         transform.Translate(Vector3.up * velocity * Time.deltaTime);
-        if ((transform.position - originalPosition).sqrMagnitude > (defenceData.range * defenceData.range)) {
+        if ((transform.position - originalPosition).
+                sqrMagnitude > (defenceData.range * defenceData.range * _tileSquare)) {
             Destroy(this.gameObject);
         }
     }

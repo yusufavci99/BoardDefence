@@ -2,11 +2,8 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class DefenceAndCount : IDataWithCount
+public class DefenceAndCount
 {
     public DefenceData defenceData;
     public int count;
-
-    public ScriptableObject data { get => defenceData; }
-    int IDataWithCount.count { get => this.count; }
 }

@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class ItemController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
-    private DefenceData defenceData;
-    private int itemRemaining;
+    private DefenceData _defenceData;
+    private int _itemRemaining;
 
     public DefenceAndCount defenceAndCount;
     public TextMeshProUGUI countText;
@@ -22,11 +22,11 @@ public class ItemController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     // Start is called before the first frame update
     void Start()
     {
-        itemRemaining = defenceAndCount.count;
-        defenceData = defenceAndCount.defenceData;
+        _itemRemaining = defenceAndCount.count;
+        _defenceData = defenceAndCount.defenceData;
 
         countText = GetComponentInChildren<TextMeshProUGUI>();
-        countText.text = itemRemaining.ToString();
+        countText.text = _itemRemaining.ToString();
 
     }
 
@@ -42,20 +42,17 @@ public class ItemController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void OnEndDrag(PointerEventData eventData) {
         ghosting.SetActive(false);
 
-        Vector3 dropLocation = GridManager.gridManager.WorldToGrid(Camera.main.ScreenToWorldPoint(eventData.position));
+        Vector3 dropGridCoord = GridManager.gridManager.WorldToGrid(Camera.main.ScreenToWorldPoint(eventData.position));
 
-        if (itemRemaining > 0 && GridManager.gridManager.TileAvailable(dropLocation)) {
+        if (_itemRemaining > 0 && GridManager.gridManager.TileAvailable(dropGridCoord)) {
 
             Shoot defenceItem = Instantiate(defencePrefab);
-            defenceItem.transform.position = GridManager.gridManager.Build(dropLocation);
-            defenceItem.defenceData = defenceData;
+            defenceItem.transform.position = GridManager.gridManager.Build(dropGridCoord);
+            defenceItem.defenceData = _defenceData;
+            defenceItem.GetComponent<EnemyTarget>().gridLocation = GridManager.gridManager.WorldToGrid(defenceItem.transform.position);
 
-            itemRemaining--;
-            countText.text = itemRemaining.ToString();
+            _itemRemaining--;
+            countText.text = _itemRemaining.ToString();
         }
-        
-    
     }
-
-    
 }

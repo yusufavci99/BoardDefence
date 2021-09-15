@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class EnemyAndCount : IDataWithCount {
+public class EnemyAndCount  {
     public EnemyData enemyData;
     public int count;
-
-    public ScriptableObject data { get => enemyData; set => throw new NotImplementedException(); }
-    int IDataWithCount.count { get => this.count; }
 }

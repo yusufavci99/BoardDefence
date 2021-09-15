@@ -6,7 +6,8 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     public Vector2 offset;
-    private float tileSize;
+    private float _tileSize;
+    public float TileSize { get => _tileSize; }
     public float tileSpacing;
 
     public GameObject tilePrefab;
@@ -15,7 +16,7 @@ public class GridManager : MonoBehaviour
 
     public static GridManager gridManager;
 
-    public bool[,] filled;
+    private bool[,] filled;
 
     void Awake() {
         if (gridManager == null) {
@@ -26,7 +27,7 @@ public class GridManager : MonoBehaviour
     }
 
     private void Start() {
-        tileSize = tilePrefab.transform.localScale.x;
+        _tileSize = tilePrefab.transform.localScale.x;
         CreateTiles();
 
         FillGrid();
@@ -42,11 +43,11 @@ public class GridManager : MonoBehaviour
     }
 
     public Vector2 GridToWorld(Vector2 gridCoordinate) {
-        return (gridCoordinate * (tileSize + tileSpacing)) + offset;
+        return (gridCoordinate * (_tileSize + tileSpacing)) + offset;
     }
 
     public  Vector2 WorldToGrid(Vector2 worldCoordinate) {
-        return Vector2Int.RoundToInt((worldCoordinate - offset) / (tileSize + tileSpacing));
+        return Vector2Int.RoundToInt((worldCoordinate - offset) / (_tileSize + tileSpacing));
     }
 
     public void CreateTiles() {
@@ -65,21 +66,29 @@ public class GridManager : MonoBehaviour
     }
 
     public bool TileAvailable(Vector3 checkPoint) {
-        int x = Mathf.RoundToInt(checkPoint.x);
-        int y = Mathf.RoundToInt(checkPoint.y);
+        Vector2Int asInt = ToInt2(checkPoint);
 
-        return OnGrid(checkPoint) && y < 3.5f && !filled[x, y];
+        return OnGrid(checkPoint) && asInt.y < 3.5f && !filled[asInt.x, asInt.y];
     }
 
-    public Vector3 Build(Vector3 buildPoint) {
-        int x = Mathf.RoundToInt(buildPoint.x);
-        int y = Mathf.RoundToInt(buildPoint.y);
-        filled[x, y] = true;
+    public Vector3 Build(Vector3 point) {
+        Vector2Int asInt = ToInt2(point);
+        filled[asInt.x, asInt.y] = true;
 
-        return GridToWorld(buildPoint);
+        return GridToWorld(point);
+    }
+
+    public void RemoveItem(Vector3 point) {
+        Vector2Int asInt = ToInt2(point);
+        filled[asInt.x, asInt.y] = false;
     }
 
     private void OnDestroy() {
         gridManager = null;
     }
+
+    public Vector2Int ToInt2( Vector3 vector) {
+        return new Vector2Int(Mathf.RoundToInt(vector.x), Mathf.RoundToInt(vector.y));
+    }
+
 }
